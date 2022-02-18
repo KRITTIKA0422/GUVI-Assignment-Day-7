@@ -1,0 +1,128 @@
+1. Solving problems using array functions on rest countries data.
+
+a.Get all the countries from Asia continent /region using Filter function
+
+CODE-
+var xhr=new XMLHttpRequest();                  //create Xml http request
+xhr.open("GET", "https://raw.githubusercontent.com/rvsp/restcountries-json-data/master/res-countries.json");
+xhr.send();
+                                               //adding listener to process the request
+xhr.onload=function() {                        //processing the request and the server will return data
+    if(xhr.status>=200&& xhr.status<300){
+        var data=JSON.parse(xhr.response);     //converting raw data to js notation
+        let info=data.filter((nation)=>{       // filter function starts
+           for(var i=0;i<data.length;i++){       //Looping through data starts
+            if(nation.region=="Asia")
+            return nation.name;
+            }
+            });
+            console.log(`
+            Country from Asia region:${info}         //to display all the country names inside Asia continent
+            `);
+        }
+    
+    else{
+        console.log("Data not available");    //If there is any error due to api endpoint or server problem then else is used to print error
+    }
+}
+
+b.Get all the countries with a population of less than 2 lakhs using Filter function
+
+CODE-
+var xhr=new XMLHttpRequest();                  //create Xml http request
+xhr.open("GET", "https://raw.githubusercontent.com/rvsp/restcountries-json-data/master/res-countries.json");
+xhr.send();
+                                               //adding listener to process the request
+xhr.onload=function() {                        //processing the request and the server will return data
+    if(xhr.status>=200&& xhr.status<300){
+        var data=JSON.parse(xhr.response);     //converting raw data to js notation
+        let info=data.filter((nation)=>{       // filter function starts
+         if(nation.population<200000)
+            return nation.name;
+            });
+            console.log(`
+            Country with a population of less than 2 lakhs:${info}         //to display all the country names having population less than 2 lakh
+            `);
+        }
+    
+    else{
+        console.log("Data not available");    //If there is any error due to api endpoint or server problem then else is used to print error
+    }
+}
+
+c. Print the following details name, capital, flag using forEach function
+
+CODE-
+var xhr=new XMLHttpRequest();                  //create Xml http request
+xhr.open("GET", "https://raw.githubusercontent.com/rvsp/restcountries-json-data/master/res-countries.json");
+xhr.send();
+                                               //adding listener to process the request
+xhr.onload=function() {                        //processing the request and the server will return data
+    if(xhr.status>=200&& xhr.status<300){
+        var data=JSON.parse(xhr.response);     //converting raw data to js notation
+        let country=[];
+        var info;
+         data.forEach(function(nation){       // forEach function starts
+         info={Name:data.name,
+               Capital:data.capital,
+               Flag:data.flag
+               };
+            country.push(info);
+            })
+            console.log(`
+            Country details:${country}         //to display all the country name, capital, flag
+            `);
+        }
+    
+    else{
+        console.log("Data not available");    //If there is any error due to api endpoint or server problem then else is used to print error
+    }
+}
+
+d. Print the total population of countries using reduce function
+
+CODE-
+var xhr=new XMLHttpRequest();                  //create Xml http request
+xhr.open("GET", "https://raw.githubusercontent.com/rvsp/restcountries-json-data/master/res-countries.json");
+xhr.send();
+                                               //adding listener to process the request
+xhr.onload=function() {                        //processing the request and the server will return data
+    if(xhr.status>=200&& xhr.status<300){
+        var data=JSON.parse(xhr.response);     //converting raw data to js notation
+         let totalPopulation=data.reduce((acc,nation)=>{       // reduce function starts
+            return acc+nation.population;
+            },0)
+            console.log(`
+            Total Population:${totalPopulation}         //to display total population of all countries
+            `);
+        }
+    
+    else{
+        console.log("Data not available");    //If there is any error due to api endpoint or server problem then else is used to print error
+    }
+}
+
+e. Print the country which uses US Dollars as currency.
+
+CODE-
+var xhr=new XMLHttpRequest();                  //create Xml http request
+xhr.open("GET", "https://raw.githubusercontent.com/rvsp/restcountries-json-data/master/res-countries.json");
+xhr.send();
+                                               //adding listener to process the request
+xhr.onload=function() {                        //processing the request and the server will return data
+    if(xhr.status>=200&& xhr.status<300){
+        var data=JSON.parse(xhr.response);     //converting raw data to js notation
+        let info=data.filter((nation)=>{       // filter function starts
+            if(nation.currencies.name=="United State Dollar")
+            return nation.name;
+            });
+            console.log(`
+            Country using US dollar as currency:${info}         //to display all the countries having US dollar as currency
+            `);
+        }
+    
+    else{
+        console.log("Data not available");    //If there is any error due to api endpoint or server problem then else is used to print error
+    }
+}
+
